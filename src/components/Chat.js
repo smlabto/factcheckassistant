@@ -1,6 +1,7 @@
 import "./Chat.css";
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Message from "./Message";
+import { animateScroll } from "react-scroll";
 
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -11,6 +12,13 @@ function Chat() {
         // {user: 'user', message : ""} // Place any initial default messages here (to show as examples)
     ]);
     const [textInput, setTextInput] = useState('');
+    const scrollRef = useRef();
+
+    function scrollChat() {
+        animateScroll.scrollToBottom({
+          containerId: "custom-scrollbar"
+        });
+    }
 
     async function handleCheckSentence() {
         const configuration = new Configuration({
@@ -20,19 +28,21 @@ function Chat() {
         
         var fullResponse = "...";
         setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
+
         const openai = new OpenAIApi(configuration);
         const resp = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt:  `Check the accuracy of this claim (in less than 500 characters): ${textInput}`,
+            prompt:  `Check the accuracy of this claim (in less than 500 characters): ${ts}`,
             temperature: 0,
             max_tokens: 100,
         });
         
         fullResponse = resp.data.choices[0].text.replace(/^\s+|\s+$/g, '');
-       
         setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
         setTextInput('');
     }
+
+    useEffect(() => scrollChat(), [messages]);
 
     return (
         <section class="page-section portfolio" id="portfolio">
@@ -45,12 +55,11 @@ function Chat() {
                     </div>
 
                     <div class="card-body">
-                        <div id="custom-scrollbar" style={{ minHeight : "300px", maxHeight : "300px", overflow: "auto", paddingRight: "18px"}}>
+                        <div id="custom-scrollbar" ref={scrollRef} style={{ minHeight : "300px", maxHeight : "300px", overflow: "auto", paddingRight: "18px"}}>
                             {messages.map(
                                 ({ user, message }) => (
                                     <Message user={user} message={message} />
-                                )
-                                
+                                )  
                             )}
                         </div>
                         <div>
