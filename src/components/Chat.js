@@ -5,7 +5,7 @@ import { animateScroll } from "react-scroll";
 
 function Chat() {
     const [messages, setMessages] = useState([
-        {user: 'user', message : "<b>SAMPLE CLAIM:</b> Obama wasn't born in the US."},
+        {user: 'user', message : "SAMPLE CLAIM: Obama wasn't born in the US."},
         {user: 'bot', message : "False. Barack Obama was born in Honolulu, Hawaii, on August 4th, 1961."},
     ]);
     const [textInput, setTextInput] = useState('');
