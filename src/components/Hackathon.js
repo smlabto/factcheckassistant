@@ -1,6 +1,6 @@
 function About() {
     return (
-        <section class="page-section bg-warning text-dark mb-0" id="about">
+        <section class="page-section bg-warning text-dark mb-0" id="hackathon">
             <div class="container">
                 <h2 class="page-section-heading text-center text-uppercase text-dark">About The Hackathon</h2>
                 <div class="divider-custom divider-dark">
@@ -12,7 +12,7 @@ function About() {
                     <div class="row">
                         <center>
                             <a href="https://socialmedialab.ca/events/hackathon/" target="_blank">
-                                <img src="https://i0.wp.com/socialmedialab.ca/wp-content/uploads/2023/01/AI-Misinfo-Hack-1-1920x1080.jpg?resize=768%2C432&amp;ssl=1">
+                                <img src="https://i0.wp.com/socialmedialab.ca/wp-content/uploads/2023/01/AI-Misinfo-Hack-1-1920x1080.jpg?resize=768%2C432&amp;ssl=1"></img> 
                             </a>
                         </center>
                     </div>
