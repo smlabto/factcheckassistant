@@ -3,8 +3,6 @@ import React, { useState, useRef, useEffect } from 'react'
 import Message from "./Message";
 import { animateScroll } from "react-scroll";
 
-const { Configuration, OpenAIApi } = require("openai");
-
 function Chat() {
     const [messages, setMessages] = useState([
         {user: 'user', message : "Obama wasn't born in the US."},
@@ -21,24 +19,37 @@ function Chat() {
     }
 
     async function handleCheckSentence() {
-        const configuration = new Configuration({
-            apiKey: process.env.REACT_APP_AI_API_KEY,
-        });
         const ts = textInput;
         
         var fullResponse = "...";
         setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
 
-        const openai = new OpenAIApi(configuration);
-        const resp = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt:  `Check the accuracy of this claim (in less than 500 characters): ${ts}`,
-            temperature: 0,
-            max_tokens: 100,
-        });
+        var url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Authorization", `Bearer ${process.env.REACT_APP_AI_API_KEY}`);
         
-        fullResponse = resp.data.choices[0].text.replace(/^\s+|\s+$/g, '');
-        setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
+        var open_ai_resp;
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                open_ai_resp = xhr.responseText;
+                fullResponse = JSON.parse(open_ai_resp).choices[0].text.replace(/^\s+|\s+$/g, '');
+                setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
+            }};
+
+        var data = `{
+            "prompt": "Check the accuracy of this claim (in less than 500 characters): ${ts}",
+            "temperature": 0.7,
+            "max_tokens": 512,
+            "top_p": 1,
+            "frequency_penalty": 0.75,
+            "presence_penalty": 0
+        }`;
+
+        xhr.send(data);
         setTextInput('');
     }
 
