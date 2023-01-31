@@ -5,16 +5,15 @@ import { animateScroll } from "react-scroll";
 
 function Chat() {
     const [messages, setMessages] = useState([
-        {user: 'user', message : "Obama wasn't born in the US."},
-        {user: 'bot', message : "Barack Obama, the 44th President of the United States, was born in Hawaii and his birth certificate confirms this fact. This claim that he was not born in the US is a conspiracy theory known as \"birtherism\" and has been debunked."},
-        // {user: 'user', message : ""} // Place any initial default messages here (to show as examples)
+        {user: 'user', message : "<b>SAMPLE CLAIM:</b> Obama wasn't born in the US."},
+        {user: 'bot', message : "False. Barack Obama was born in Honolulu, Hawaii, on August 4th, 1961."},
     ]);
     const [textInput, setTextInput] = useState('');
     const scrollRef = useRef();
 
     function scrollChat() {
         animateScroll.scrollToBottom({
-          containerId: "custom-scrollbar"
+            containerId: "custom-scrollbar"
         });
     }
 
