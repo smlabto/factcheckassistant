@@ -11,10 +11,12 @@ function About() {
                     <div class="divider-custom-line"></div>
                 </div>
                 {/* <!-- About Section Content--> */}
-                <div class="row">
-                    <div class="col-lg-4 ms-auto"><p class="lead">The Social Media Lab's Fact Check Assistant is an AI-powered bot for simple fact checking. It was created as a proof of concept for the Social Media Lab’s 2023 Canadian #AI Misinformation Hackathon. The app uses OpenAI API capabilities for simple fact checking. Please be aware that OpenAI has very limited knowledge of the world and events after 2021. As a result, the API may occasionally generate incorrect information.</p>
-                    </div>
-                    <div class="col-lg-4 me-auto"><p class="lead">The app is provided “as is” without any warranty of accuracy, reliability, completeness, efficiency, timeliness, or correct sequencing of such information or otherwise, either express or implied. Reliance on any information provided by this app is solely at your own risk. We suggest verifying information provided here by consulting additional sources.</p>
+                <div class="column">
+                    <div class="row">
+                        <div class="col-lg-4 ms-auto"><p class="lead">The Social Media Lab's Fact Check Assistant is an AI-powered bot for simple fact checking. It was created as a proof of concept for the Social Media Lab’s 2023 Canadian #AI Misinformation Hackathon. The app uses OpenAI API capabilities for simple fact checking. Please be aware that OpenAI has very limited knowledge of the world and events after 2021. As a result, the API may occasionally generate incorrect information.</p>
+                        </div>
+                        <div class="col-lg-4 me-auto"><p class="lead">The app is provided “as is” without any warranty of accuracy, reliability, completeness, efficiency, timeliness, or correct sequencing of such information or otherwise, either express or implied. Reliance on any information provided by this app is solely at your own risk. We suggest verifying information provided here by consulting additional sources. While OpenAI has put safeguards in place, the system may occasionally generate incorrect or misleading information and produce offensive or biased content.</p>
+                        </div>
                     </div>
                 </div>
                 {/* <!-- About Section Button--> */}
