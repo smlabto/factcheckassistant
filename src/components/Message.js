@@ -6,7 +6,7 @@ function Message({ user, message }) {
     if (user === 'user') {
         return (
             <div class="d-flex flex-row justify-content-start align-items-end mb-4">
-                <h1 class="mr-3 bi bi-person-fill"></h1>				
+                <h1><div class="mr-3 bi bi-person-fill"></div></h1>				
                 <div class="p-3 ms-3" style={{ borderRadius: "15px", backgroundColor: "rgba(57, 192, 237,.2)" }}>
                     <p class="small mb-0">{message}</p>
                 </div>

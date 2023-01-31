@@ -14,7 +14,7 @@ function Chat() {
 
     async function handleCheckSentence() {
         const configuration = new Configuration({
-            apiKey: process.env.AI_API_KEY,
+            apiKey: process.env.REACT_APP_AI_API_KEY,
         });
         const ts = textInput;
         
