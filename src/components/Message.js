@@ -14,13 +14,11 @@ function Message({ user, message }) {
         );
     } else if (user === 'bot') {
         return (
-            <div>
-                <div class="d-flex flex-row justify-content-end align-items-flex-end mb-4">
-                    <div class="p-3 me-3 border" style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}>
-                        <p class="small mb-0">{guessing ? <div class="dot-falling"></div> : message}</p>
-                    </div>
-                    <img src="../assets/img/avataaars.svg" width="32" height="32" alt=""/>            
+            <div class="d-flex flex-row justify-content-end align-items-flex-end mb-4">
+                <div class="p-3 me-3 border" style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}>
+                    <p class="small mb-0">{guessing ? <div class="dot-falling"></div> : message}</p>
                 </div>
+                <img src="../assets/img/avataaars.svg" width="32" height="32" alt=""/>            
             </div>
         );
     }
