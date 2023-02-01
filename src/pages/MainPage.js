@@ -9,8 +9,8 @@ function MainPage() {
       <div>
         <MainHeader />
         <Chat />
-        <About />
         <Hackathon />
+        <About />
         <Footer />
     </div>
     );
