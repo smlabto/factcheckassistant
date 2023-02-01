@@ -18,10 +18,16 @@ function Message({ user, message }) {
                 <div class="p-3 me-3 border" style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}>
                     <p class="small mb-3">{guessing ? <div class="dot-falling"></div> : message}</p>
                     <figcaption class="blockquote-footer">
-                        <cite title="disclosure">This app is a proof of concept and may occasionally produce misleading or incorrect information. See full disclosure below.</cite>
+                        This app is a proof of concept and may occasionally produce misleading or incorrect information. See full disclosure below.
                     </figcaption>                    
                 </div>
                 <img src="../assets/img/avataaars.svg" width="32" height="32" alt=""/>            
+            </div>
+        );
+    } else if (user === 'notice') {
+        return (
+            <div class="alert alert-light text-secondary small p-0 mb-3" role="alert">
+                <p class="small mb-0">This app is a proof of concept and may occasionally produce misleading or incorrect information. See full disclosure below.</p>
             </div>
         );
     }
