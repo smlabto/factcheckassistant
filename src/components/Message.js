@@ -23,7 +23,7 @@ function Message({ user, message }) {
         );
     } else if (user === 'notice') {
         return (
-            <div class="alert alert-light text-secondary small p-0 mb-3" role="alert">
+            <div class="alert alert-light text-secondary small p-0 mb-3" role="alert" style={{ fontSize: "8px"}}>
                 <p class="small mb-0">This app is a proof of concept and may occasionally produce misleading or incorrect information. See <a href="#about" class="link-secondary">full disclosure</a> below.</p>
             </div>
         );
