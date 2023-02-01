@@ -36,14 +36,13 @@ function Chat() {
             if (xhr.readyState === 4) {
                 open_ai_resp = xhr.responseText;
                 fullResponse = JSON.parse(open_ai_resp).choices[0].text.replace(/^\s+|\s+$/g, '');
-                setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
+                setMessages([...messages, {user: 'user', message : ts}, {user: 'disclaimer', message : ''}, {user: 'bot', message : fullResponse}]);
             }};
 
         var data = `{
             "prompt": "Check the accuracy of this claim (in less than 500 characters): ${ts}",
-            "temperature": 0.7,
+            "temperature": 0,
             "max_tokens": 512,
-            "top_p": 1,
             "frequency_penalty": 0.75,
             "presence_penalty": 0
         }`;
