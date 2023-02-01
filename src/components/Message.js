@@ -15,9 +15,6 @@ function Message({ user, message }) {
     } else if (user === 'bot') {
         return (
             <div>
-                <div class="alert alert-light text-secondary small p-0 mb-3" role="alert" style="font-size:8pt">
-                    <p class="small mb-0">This app is a proof of concept and may occasionally produce misleading or incorrect information. See full disclosure below.</p>
-                </div>
                 <div class="d-flex flex-row justify-content-end align-items-flex-end mb-4">
                     <div class="p-3 me-3 border" style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}>
                         <p class="small mb-0">{guessing ? <div class="dot-falling"></div> : message}</p>
