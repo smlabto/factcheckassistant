@@ -4,7 +4,6 @@ import Message from "./Message";
 import { animateScroll } from "react-scroll";
 
 function Chat() {
-    const tnote = "This app is a proof of concept and may occasionally produce misleading or incorrect information.";    
     const [messages, setMessages] = useState([
         {user: 'user', message : "SAMPLE CLAIM: Obama wasn't born in the US."},
         {user: 'bot', message : "False. Barack Obama was born in Honolulu, Hawaii, on August 4th, 1961."},

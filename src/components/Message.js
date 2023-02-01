@@ -14,18 +14,16 @@ function Message({ user, message }) {
         );
     } else if (user === 'bot') {
         return (
-            <div class="d-flex flex-row justify-content-end align-items-flex-end mb-4">
-                <div class="p-3 me-3 border" style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}>
-                    <p class="small mb-0">{guessing ? <div class="dot-falling"></div> : message}</p>
+            <div>
+                <div class="alert alert-light text-secondary small p-0 mb-3" role="alert" style="font-size:8pt">
+                    <p class="small mb-0">This app is a proof of concept and may occasionally produce misleading or incorrect information. See <a href="#about" class="link-secondary">full disclosure</a> below.</p>
                 </div>
-                <img src="../assets/img/avataaars.svg" width="32" height="32" alt=""/>            
-            </div>  
-        );
-    } else if (user === 'disclaimer') {
-        return (
-            <div class="alert alert-light text-secondary small p-0 mb-3" role="alert" style="font-size:8pt">
-                <p class="small mb-0">{message}</p>
-                <p>See <a href="#about" class="link-secondary">full disclosure</a> below.</p>
+                <div class="d-flex flex-row justify-content-end align-items-flex-end mb-4">
+                    <div class="p-3 me-3 border" style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}>
+                        <p class="small mb-0">{guessing ? <div class="dot-falling"></div> : message}</p>
+                    </div>
+                    <img src="../assets/img/avataaars.svg" width="32" height="32" alt=""/>            
+                </div>
             </div>
         );
     }
