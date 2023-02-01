@@ -14,9 +14,12 @@ function Message({ user, message }) {
         );
     } else if (user === 'bot') {
         return (
-            <div class="d-flex flex-row justify-content-end align-items-flex-end mb-4">
+            <div class="d-flex flex-row justify-content-end align-items-flex-end mb-4">             
                 <div class="p-3 me-3 border" style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}>
-                    <p class="small mb-0">{guessing ? <div class="dot-falling"></div> : message}</p>
+                    <p class="small mb-3">{guessing ? <div class="dot-falling"></div> : message}</p>
+                    <figcaption class="blockquote-footer">
+                        <cite title="disclosure">This app is a proof of concept and may occasionally produce misleading or incorrect information. See full disclosure below.</cite>
+                    </figcaption>                    
                 </div>
                 <img src="../assets/img/avataaars.svg" width="32" height="32" alt=""/>            
             </div>
