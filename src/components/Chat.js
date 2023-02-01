@@ -36,7 +36,7 @@ function Chat() {
             if (xhr.readyState === 4) {
                 open_ai_resp = xhr.responseText;
                 fullResponse = JSON.parse(open_ai_resp).choices[0].text.replace(/^\s+|\s+$/g, '');
-                setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
+                setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : fullResponse}]);
             }};
 
         var data = `{
