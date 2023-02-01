@@ -1,6 +1,8 @@
 import "./Chat.css";
 import React, { useState, useRef, useEffect } from 'react'
 import Message from "./Message";
+import ErrorPopup from "./ErrorPopup";
+import NoticeCovid from "./NoticeCovid";
 import { animateScroll } from "react-scroll";
 
 function Chat() {
@@ -9,6 +11,9 @@ function Chat() {
         {user: 'bot', message : "False. Barack Obama was born in Honolulu, Hawaii, on August 4th, 1961."},
     ]);
     const [textInput, setTextInput] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [showCovid, setShowCovid] = useState(false);
+    const [isChecking, setIsChecking] = useState(false);
     const scrollRef = useRef();
 
     function scrollChat() {
@@ -18,8 +23,36 @@ function Chat() {
     }
 
     async function handleCheckSentence() {
-        const ts = textInput;
-        
+        const ts = textInput.replace(/\n/g, " ");
+        setErrorMessage('');
+        setIsChecking(true);
+
+        if (ts.trim().length === 0) {
+            setErrorMessage('Please make sure to input a complete prompt with at least 3 words.');
+            setIsChecking(false);
+            return;
+        } else {
+            var s = ts.replace(/(^\s*)|(\s*$)/gi,"");
+            s = s.replace(/[ ]{2,}/gi," ");
+            s = s.replace(/\n /,"\n");
+            if (s.split(' ').length < 3) {
+                setErrorMessage('Please make sure to input a complete prompt with at least 3 words.');
+                setIsChecking(false);
+                return;
+            }
+        }
+
+        // This state handles showing the covid info box if any of the filter words appear in the text
+        const covidFilters = ['covid', 'coronavirus', 'covid vaccine', 'covid-19 vaccine'];
+        var covidResult = false;
+        for (let i = 0; i < covidFilters.length; i++) {
+            if (!covidResult) {
+                covidResult = ts.toLowerCase().indexOf(covidFilters[i]) > -1;
+            }
+        }
+        setShowCovid(covidResult);
+
+
         var fullResponse = "...";
         setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
 
@@ -33,14 +66,22 @@ function Chat() {
         
         var open_ai_resp;
         xhr.onreadystatechange = function () {
+            console.log(xhr);
             if (xhr.readyState === 4) {
-                open_ai_resp = xhr.responseText;
-                fullResponse = JSON.parse(open_ai_resp).choices[0].text.replace(/^\s+|\s+$/g, '');
-                setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : fullResponse}]);
-            }};
+                if (xhr.status === 200) {
+                    open_ai_resp = xhr.responseText;
+                    fullResponse = JSON.parse(open_ai_resp).choices[0].text.replace(/^\s+|\s+$/g, '');
+                    setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : fullResponse}]);
+                } else {
+                    setErrorMessage(`There seems to be an error with OpenAI API (${xhr.status} Error), try refreshing the page or type another prompt`);
+                    setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : "I had some trouble processing this claim...Please try again."}]);
+                }
+                setIsChecking(false);
+            }
+        };
 
         var data = `{
-            "prompt": "Check the accuracy of this claim (in less than 500 characters): ${ts}",
+            "prompt": "Check the accuracy of this claim (in less than 500 characters); cite credible sources for more information if available: ${ts}",
             "temperature": 0,
             "max_tokens": 512,
             "frequency_penalty": 0.75,
@@ -71,13 +112,15 @@ function Chat() {
                                 )  
                             )}
                         </div>
+                        <hr />
+                        <ErrorPopup message={errorMessage} />
+                        <NoticeCovid show={showCovid} />
                         <div>
-                            <hr />
                             <div class="form-outline">
                                 <label class="form-label" for="textAreaExample">Enter a claim …</label>
-                                <textarea class="form-control" id="textAreaExample" rows="4" maxlength="400" value={textInput} onChange={e => setTextInput(e.target.value)}></textarea>
+                                <textarea required class="form-control" id="textAreaExample" rows="4" maxlength="400" value={textInput} onChange={e => setTextInput(e.target.value)}></textarea>
                             </div>
-                            <button type="button" class="btn btn-info btn-rounded float-end" style={{ marginTop: "10px" }} onClick={handleCheckSentence}>Send</button>
+                            <button type="button" disabled={isChecking ? true : false} class="btn btn-info btn-rounded float-end" style={{ marginTop: "10px" }} onClick={handleCheckSentence}>Send</button>
                         </div>
                     </div>
                 </div>
