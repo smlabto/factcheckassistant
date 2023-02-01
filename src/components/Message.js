@@ -24,7 +24,8 @@ function Message({ user, message }) {
     } else if (user === 'disclaimer') {
         return (
             <div class="alert alert-light text-secondary small p-0 mb-3" role="alert" style="font-size:8pt">
-                This app is a proof of concept and may occasionally produce misleading or incorrect information. See <a href="#about" class="link-secondary">full disclosure</a> below.
+                <p class="small mb-0">{message}</p>
+                <p>See <a href="#about" class="link-secondary">full disclosure</a> below.</p>
             </div>
         );
     }

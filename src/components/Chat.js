@@ -4,8 +4,10 @@ import Message from "./Message";
 import { animateScroll } from "react-scroll";
 
 function Chat() {
+    const tnote = "This app is a proof of concept and may occasionally produce misleading or incorrect information.";    
     const [messages, setMessages] = useState([
         {user: 'user', message : "SAMPLE CLAIM: Obama wasn't born in the US."},
+        {user: 'disclaimer', message : tnote},
         {user: 'bot', message : "False. Barack Obama was born in Honolulu, Hawaii, on August 4th, 1961."},
     ]);
     const [textInput, setTextInput] = useState('');
@@ -21,7 +23,7 @@ function Chat() {
         const ts = textInput;
         
         var fullResponse = "...";
-        setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
+        setMessages([...messages, {user: 'user', message : ts}, {user: 'disclaimer', message : tnote}, {user: 'bot', message : fullResponse}]);
 
         var url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
 
@@ -36,7 +38,7 @@ function Chat() {
             if (xhr.readyState === 4) {
                 open_ai_resp = xhr.responseText;
                 fullResponse = JSON.parse(open_ai_resp).choices[0].text.replace(/^\s+|\s+$/g, '');
-                setMessages([...messages, {user: 'user', message : ts}, {user: 'disclaimer', message : ''}, {user: 'bot', message : fullResponse}]);
+                setMessages([...messages, {user: 'user', message : ts}, {user: 'disclaimer', message : tnote}, {user: 'bot', message : fullResponse}]);
             }};
 
         var data = `{
