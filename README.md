@@ -10,6 +10,8 @@
 [![React](https://img.shields.io/badge/made%20with%20react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](#)
 [![Vercel](https://img.shields.io/badge/deployed%20with%20vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](#)
 
+Live Example of this demo app: https://factcheckassistant.socialmedialab.ca
+
 The Social Media Lab's Fact Check Assistant is an AI-powered bot for simple fact checking. It was created as a proof of concept for the Social Media Lab’s 2023 Canadian #AI Misinformation Hackathon. The app uses OpenAI API capabilities to facilitate simple fact checking. Please be aware that OpenAI has very limited knowledge of the world and events after 2021 and that while OpenAI has put safeguards in place, their system may occasionally generate incorrect or misleading information and produce offensive or biased content.
 
 ## ❗Disclaimer
@@ -20,4 +22,8 @@ Deploy your own copy of this app with Vercel.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/smlabto/factcheckassistant&template=create-react-app)
 
-Live Example of this demo app: https://factcheckassistant.socialmedialab.ca
+### Steps to follow to quickly setup your own version
+- Hit the Deploy with Vercel button above, setup account with Vercel if you don't already, and follow the steps through Vercel
+- Signup for OpenAI to create and API Key to use with your local version of this project https://beta.openai.com/signup
+- Add the API Key to your Vercel app as an Environment Variable by going to your Dashboard, then going to Settings > Environment Variables
+  - Name the variable OPENAI_API_KEY, this is the name this project uses to access this key, the name can be changed in the .env.production file
