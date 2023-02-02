@@ -92,7 +92,7 @@ function Chat() {
         };
 
         var data = `{
-            "prompt": "Respond as though you, the AI model, are a fact checking assistant. Check the accuracy of the following claim (in less than 500 characters): ${ts}",
+            "prompt": "Respond as though you, the AI model, are a fact checking assistant. Fact check the following claim (in less than 500 characters): ${ts}.",
             "temperature": 0,
             "max_tokens": 512,
             "frequency_penalty": 0.75,
