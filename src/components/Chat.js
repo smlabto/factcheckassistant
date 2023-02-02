@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Message from "./Message";
 import ErrorPopup from "./ErrorPopup";
 import NoticeCovid from "./NoticeCovid";
+import NoticeFuture from "./NoticeFuture";
 import { animateScroll } from "react-scroll";
 
 function Chat() {
@@ -12,6 +13,7 @@ function Chat() {
     ]);
     const [textInput, setTextInput] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [futureMessage, setFutureMessage] = useState('');
     const [showCovid, setShowCovid] = useState(false);
     const [isChecking, setIsChecking] = useState(false);
     const scrollRef = useRef();
@@ -23,7 +25,7 @@ function Chat() {
     }
 
     async function handleCheckSentence() {
-        const ts = textInput.replace(/\n/g, " ");
+        var ts = textInput.replace(/\n/g, " ");
         setErrorMessage('');
         setIsChecking(true);
 
@@ -52,10 +54,20 @@ function Chat() {
         }
         setShowCovid(covidResult);
 
+        // This state checks if future events are mentioned and gives a notice to user that OpenAI has little knowledge of events past 2021
+        const futureFilters = ['2022', '2023', '2024', '2025', 'Future', 'Now', 'Today', 'Tomorrow', 'Next Day', 'Next Week', 'Next Month', 'Next Year'];
+        var futureResult = false;
+        for (let i = 0; i < futureFilters.length; i++) {
+            if (!futureResult) {
+                futureResult = ts.toLowerCase().indexOf(futureFilters[i]) > -1;
+            }
+        }
+        setFutureMessage(futureResult);
+
 
         var fullResponse = "...";
         setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
-
+        
         var url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
 
         var xhr = new XMLHttpRequest();
@@ -66,7 +78,6 @@ function Chat() {
         
         var open_ai_resp;
         xhr.onreadystatechange = function () {
-            console.log(xhr);
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     open_ai_resp = xhr.responseText;
@@ -114,6 +125,7 @@ function Chat() {
                         </div>
                         <hr />
                         <ErrorPopup message={errorMessage} />
+                        <NoticeFuture show={futureMessage} />
                         <NoticeCovid show={showCovid} />
                         <div>
                             <div class="form-outline">
