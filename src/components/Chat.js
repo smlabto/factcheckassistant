@@ -55,7 +55,7 @@ function Chat() {
         setShowCovid(covidResult);
 
         // This state checks if future events are mentioned and gives a notice to user that OpenAI has little knowledge of events past 2021
-        const futureFilters = ['2022', '2023', '2024', '2025', 'Future', 'Now', 'Today', 'Tomorrow', 'Next Day', 'Next Week', 'Next Month', 'Next Year'];
+        const futureFilters = ['2022', '2023', '2024', '2025', 'future', 'now', 'today', 'tomorrow', 'next day', 'next week', 'next month', 'next year'];
         var futureResult = false;
         for (let i = 0; i < futureFilters.length; i++) {
             if (!futureResult) {
