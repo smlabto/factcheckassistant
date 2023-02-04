@@ -24,7 +24,7 @@ function Message({ user, message }) {
     } else if (user === 'notice') {
         return (
             <div class="alert alert-light text-secondary small p-0 mb-3" role="alert" style={{ fontSize: "11px"}}>
-                <p class="small mb-0">This app is a proof of concept and may occasionally produce misleading or incorrect information. It tends to be better at providing answers about people and topics associated with the English-speaking world. See <a href="#about" class="link-secondary">full disclosure</a> below.</p>
+                <p class="small mb-0">This app is a proof of concept and may occasionally produce misleading or incorrect information. It tends to be better at checking claims about topics linked to countries where English is the primary language. See <a href="#about" class="link-secondary">full disclosure</a> below.</p>
             </div>
         );
     }
