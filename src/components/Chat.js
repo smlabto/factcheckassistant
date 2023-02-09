@@ -4,6 +4,7 @@ import Message from "./Message";
 import ErrorPopup from "./ErrorPopup";
 import NoticeCovid from "./NoticeCovid";
 import NoticeFuture from "./NoticeFuture";
+import NoticeWrite from "./NoticeWrite";
 import { animateScroll } from "react-scroll";
 
 function Chat() {
@@ -15,6 +16,7 @@ function Chat() {
     const [errorMessage, setErrorMessage] = useState('');
     const [futureMessage, setFutureMessage] = useState('');
     const [showCovid, setShowCovid] = useState(false);
+    const [showWrite, setWriteMessage] = useState(false);
     const [isChecking, setIsChecking] = useState(false);
     const scrollRef = useRef();
 
@@ -63,6 +65,22 @@ function Chat() {
             }
         }
         setFutureMessage(futureResult);
+
+
+        // This state handles checks for input asking the chatbot to "write" something from someone's prespective
+        const writeFilters = ['write', 'draft', 'from the perspective', 'from the point of view', 'edit'];
+        var writeResult = false;
+        for (let i = 0; i < writeFilters.length; i++) {
+            if (!writeResult) {
+                writeResult = ts.toLowerCase().indexOf(writeFilters[i]) > -1;
+            }
+        }
+        if (writeResult) {
+            setErrorMessage('Please revise your input as a claim that needs to be fact-checked.');
+            setIsChecking(false);
+            return;
+        }        
+        //setWriteMessage(writeResult);
 
 
         var fullResponse = "...";
@@ -127,6 +145,7 @@ function Chat() {
                         <ErrorPopup message={errorMessage} />
                         <NoticeFuture show={futureMessage} />
                         <NoticeCovid show={showCovid} />
+                        <NoticeWrite show={showWrite} />
                         <div>
                             <div class="form-outline">
                                 <label class="form-label" for="textAreaExample">Enter a claim …</label>
