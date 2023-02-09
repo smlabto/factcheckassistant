@@ -28,6 +28,7 @@ function Chat() {
 
     async function handleCheckSentence() {
         var ts = textInput.replace(/\n/g, " ");
+        
         setErrorMessage('');
         setIsChecking(true);
 
@@ -75,13 +76,22 @@ function Chat() {
                 writeResult = ts.toLowerCase().indexOf(writeFilters[i]) > -1;
             }
         }
+
+        if (!writeResult) {
+            const startverbFilters = ['create', 'produce', 'imagine', 'rewrite', 'improvise'];
+            for (let i = 0; i < startverbFilters.length; i++) {
+                if (!writeResult) {
+                    writeResult = ts.toLowerCase().startsWith(startverbFilters[i]);
+                }
+            }
+        }
+
         if (writeResult) {
             setErrorMessage('Please revise your input as a claim that needs to be fact-checked.');
             setIsChecking(false);
             return;
         }        
         //setWriteMessage(writeResult);
-
 
         var fullResponse = "...";
         setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
