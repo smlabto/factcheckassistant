@@ -23,7 +23,11 @@ Deploy your own copy of this app with Vercel.
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/smlabto/factcheckassistant&template=create-react-app)
 
 ### Steps to follow to quickly setup your own version
-- Hit the Deploy with Vercel button above, setup account with Vercel if you don't already, and follow the steps through Vercel
-- Signup for OpenAI to create and API Key to use with your local version of this project https://beta.openai.com/signup
-- Add the API Key to your Vercel app as an Environment Variable by going to your Dashboard, then going to Settings > Environment Variables
-  - Name the variable OPENAI_API_KEY, this is the name this project uses to access this key, the name can be changed in the .env.production file
+1. Hit the Deploy with Vercel button above. Setup an account with Vercel if you haven't already, and follow the app deployment steps through Vercel. 
+2. Register an account with OpenAI API. https://openai.com/api/
+3. Create/Access your OpenAI API key by selecting `View API keys` under your profile icon.
+4. Copy your OpenAI API key to later add it as an environment variable in your Vercel application.
+5. Add the API Key to your Vercel app as an Environment Variable by selecting your project in the Vercel Dashboard, then go to  
+`Settings > Environment Variables`. Here you can create environment variables.
+
+   Create an environment variable and name it `OPENAI_API_KEY` within Vercel. This is the name the Fact Check Assistant project uses to access this key by default. The name can be edited within the project in the `.env.production` file.
