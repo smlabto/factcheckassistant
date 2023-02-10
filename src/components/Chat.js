@@ -87,7 +87,7 @@ function Chat() {
         }
 
         if (writeResult) {
-            setErrorMessage('Please revise your input as a claim that needs to be fact-checked.');
+            setErrorMessage('Please revise your input as a claim to be fact-checked.');
             setIsChecking(false);
             return;
         }        
