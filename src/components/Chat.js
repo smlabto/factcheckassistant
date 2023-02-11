@@ -27,8 +27,7 @@ function Chat() {
     }
 
     async function handleCheckSentence() {
-        var ts = textInput.replace(/\n/g, " ");
-        
+        var ts = textInput.replace(/[\n'"]/g, " ");
         setErrorMessage('');
         setIsChecking(true);
 
