@@ -110,9 +110,7 @@ function Chat() {
                 if (xhr.status === 200) {
                     open_ai_resp = xhr.responseText;
                     fullResponse = JSON.parse(open_ai_resp).choices[0].text.replace(/^\s+|\s+$/g, '');
-                    Link2GFactCheck = "";
-
-                    setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : fullResponse},{user: 'factcheck', message :  ts}]);
+                    setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : fullResponse},{user: 'factcheck', message : ts}]);
                 } else {
                     setErrorMessage(`There seems to be an error with OpenAI API (${xhr.status} Error), try refreshing the page or type another prompt`);
                     setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : "I had some trouble processing this claim...Please try again."}]);
