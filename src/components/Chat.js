@@ -68,8 +68,8 @@ function Chat() {
         setFutureMessage(futureResult);
 
 
-        // This state handles checks for input asking the chatbot to "write" something from someone's prespective
-        const writeFilters = ['write', 'draft', 'from the perspective', 'from the point of view', 'edit'];
+        // basic prompt injection check
+        const writeFilters = ['write', 'draft', 'from the perspective', 'from the point of view', 'edit','ignore','output','prompt','disregard','skip','as if','as though','joke','humor','sarcasm','hallucinate','haha','brainstorm','changed my mind'];
         var writeResult = false;
         for (let i = 0; i < writeFilters.length; i++) {
             if (!writeResult) {
@@ -78,7 +78,7 @@ function Chat() {
         }
 
         if (!writeResult) {
-            const startverbFilters = ['create', 'produce', 'imagine', 'rewrite', 'improvise'];
+            const startverbFilters = ['proclaim','translate','instead','create', 'produce', 'imagine', 'rewrite', 'improvise','act','dream','bluff','fake','fool','play','live reality','enact','counterfeit','forge','dupe','do like','phony','simulate','cheat','mimic','pretend','imitate','cheat','assume','say'];
             for (let i = 0; i < startverbFilters.length; i++) {
                 if (!writeResult) {
                     writeResult = ts.toLowerCase().startsWith(startverbFilters[i]);
@@ -120,7 +120,7 @@ function Chat() {
         };
 
         var data = `{
-            "prompt": "You are a chatbot fact checking assistant. Fact-check the following statement, then explain why (in less than 500 characters): ${ts}.",
+            "prompt": "You are a chatbot fact checking assistant. Fact-check the following statement, then explain why (in less than 500 characters): Text: ###${ts}.###",
             "temperature": 0,
             "max_tokens": 512,
             "frequency_penalty": 0.75,
