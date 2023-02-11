@@ -27,6 +27,15 @@ function Message({ user, message }) {
                 <p class="small mb-0">This app is a proof of concept and may occasionally produce misleading or incorrect information. It tends to be better at checking claims about topics linked to countries where English is the primary language. See <a href="#about" class="link-secondary">full disclosure</a> below.</p>
             </div>
         );
+    } else if (user === 'factcheck') {
+        return (
+            <div class="d-flex flex-row justify-content-end align-items-flex-end mb-4">             
+                <div class="p-3 me-3 border" style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}>
+                    <p class="small mb-3">See if this claim has been verified using <a href="https://toolbox.google.com/factcheck/explorer/search/{message}" class="link-secondary">Google Fact Check Tools</a></p>                   
+                </div>
+                <img src="../assets/img/avataaars.svg" width="32" height="32" alt=""/>            
+            </div>
+        );        
     }
 }
 
