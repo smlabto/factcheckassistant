@@ -122,8 +122,8 @@ function Chat() {
         var data = `{
             "model": "gpt-3.5-turbo",
             "messages": [
-                {"role": "user", "content": "${ts}."},
-                {"role": "system", "content": "${system}"}
+                {"role": "system", "content": "${system}"},
+                {"role": "user", "content": "${ts}."}
             ],
             "temperature": 0,
             "max_tokens": 512,
