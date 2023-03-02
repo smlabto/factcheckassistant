@@ -118,13 +118,12 @@ function Chat() {
             }
         };
 
-        var system = "You are a chatbot fact checking assistant developed by the Social Media Lab at Toronto Metropolitan University. Fact-check statements, then explain why (in less than 500 characters).";
+        var system = "You are a chatbot fact checking assistant developed by the Social Media Lab at Toronto Metropolitan University. Fact-check statements, then explain why (in less than 600 characters).";
         var data = `{
             "model": "gpt-3.5-turbo",
             "messages": [
                 {"role": "system", "content": "${system}"},
                 {"role": "user", "content": "${ts}."}
-                // {"role": "user", "content": "You are a chatbot fact checking assistant developed by the Social Media Lab at Toronto Metropolitan University. Fact-check the following statement, then explain why (in less than 500 characters): Text: ###${ts}.###"}
             ],
             "temperature": 0,
             "max_tokens": 512,
