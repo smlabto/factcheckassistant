@@ -95,7 +95,7 @@ function Chat() {
         var fullResponse = "...";
         setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
         
-        var url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
+        var url = "https://api.openai.com/v1/chat/completions";
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url);
@@ -108,7 +108,7 @@ function Chat() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     open_ai_resp = xhr.responseText;
-                    fullResponse = JSON.parse(open_ai_resp).choices[0].text.replace(/^\s+|\s+$/g, '');
+                    fullResponse = JSON.parse(open_ai_resp).choices[0].message.content.replace(/^\s+|\s+$/g, '');
                     setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : fullResponse},{user: 'factcheck', message : encodeURIComponent(ts) }]);
                 } else {
                     setErrorMessage(`There seems to be an error with OpenAI API (${xhr.status} Error), try refreshing the page or type another prompt`);
@@ -118,8 +118,13 @@ function Chat() {
             }
         };
 
+        var system = "You are a chatbot fact checking assistant. Fact-check statements, then explain why (in less than 500 characters).";
         var data = `{
-            "prompt": "You are a chatbot fact checking assistant. Fact-check the following statement, then explain why (in less than 500 characters): Text: ###${ts}.###",
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                {"role": "user", "content": "${ts}."},
+                {"role": "system", "content": "${system}"}
+            ],
             "temperature": 0,
             "max_tokens": 512,
             "frequency_penalty": 0.75,
