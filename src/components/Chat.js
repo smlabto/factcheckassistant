@@ -120,7 +120,7 @@ function Chat() {
 
         var system = "You are a chatbot fact checking assistant developed by the Social Media Lab at Toronto Metropolitan University. Fact-check statements, then explain why (in less than 600 characters).";
         var data = `{
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4",
             "messages": [
                 {"role": "system", "content": "${system}"},
                 {"role": "user", "content": "${ts}."}
