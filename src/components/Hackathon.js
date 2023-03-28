@@ -10,7 +10,7 @@ function About() {
                 </div>
                 <div class="column">
                     <div class="row">
-                        <p>The Social Media Lab's Fact Check Assistant is created as a proof of concept for the <a class="link-dark" href="https://socialmedialab.ca/events/hackathon/" rel="noreferrer" target="_blank">the Social Media Lab's 2023 Canadian #AI Misinformation Hackathon</a>. It's a prototype designed to demonstrate and test the feasibility of using AI for fact-checking purposes.
+                        <p>The Social Media Lab's Fact Check Assistant is created as a proof of concept for <a class="link-dark" href="https://socialmedialab.ca/events/hackathon/" rel="noreferrer" target="_blank">the Social Media Lab's 2023 Canadian #AI Misinformation Hackathon</a>. It's a prototype designed to demonstrate and test the feasibility of using AI for fact-checking purposes.
                         </p>
                     </div>
                     <div class="row">
