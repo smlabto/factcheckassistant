@@ -1,6 +1,6 @@
 <div align="center">
   <a href="#"><img src="https://socialmedialab.ca/wp-content/uploads/2022/05/TMU_TRSM_SocialMediaLab_transparent_WHITE-1.png.webp" height="50px" /></a>
-  <h1>Social Media Lab's Fact Check Assistant<h3>An OpenAI-powered bot for simple fact checking.</h3></h1>
+  <h1>Social Media Lab's Fact Check Assistant<h3>An OpenAI-powered bot for simple fact checking | Un bot alimenté par OpenAI pour vérification simple des faits.</h3></h1>
   <a href="https://factcheckassistant.socialmedialab.ca/" target="_blank">
     <img src="https://factcheckassistant.socialmedialab.ca/assets/img/avataaars.svg" height="200px" />
   </a>
