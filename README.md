@@ -39,7 +39,8 @@ Deploy your own copy of this app with Vercel | Déployez votre propre copie de c
 4. Copy your OpenAI API key to later add it as an environment variable in your Vercel application.
 5. Add the API Key to your Vercel app as an Environment Variable by selecting your project in the Vercel Dashboard, then go to  
 `Settings > Environment Variables`. Here you can create environment variables.
-
+6. Create an environment variable and name it `OPENAI_API_KEY` within Vercel. This is the name the Fact Check Assistant project uses to access this key by default. The name can be edited within the project in the `.env.production` file.
+   
 --------------
 
 ### Étapes à suivre pour configurer rapidement votre propre version
@@ -49,10 +50,11 @@ Deploy your own copy of this app with Vercel | Déployez votre propre copie de c
 4. Copiez votre clé API OpenAI pour l'ajouter plus tard en tant que variable d'environnement dans votre application Vercel.
 5. Ajoutez la clé API à votre application Vercel en tant que variable d'environnement en sélectionnant votre projet dans le tableau de bord Vercel, puis allez à
 `Paramètres > Variables d'environnement`. Ici, vous pouvez créer des variables d'environnement.
+6. Créez une variable d'environnement et nommez-la OPENAI_API_KEY dans Vercel. C'est le nom que le projet Fact Check Assistant utilise par défaut pour accéder à cette clé. Le nom peut être modifié dans le projet, dans le fichier .env.production.
+
 
 --------------
 
 The project is funded by the Government of Canada via the Digital Citizen Contribution Program.
 
 
-   Create an environment variable and name it `OPENAI_API_KEY` within Vercel. This is the name the Fact Check Assistant project uses to access this key by default. The name can be edited within the project in the `.env.production` file.
