@@ -50,5 +50,9 @@ Deploy your own copy of this app with Vercel | Déployez votre propre copie de c
 5. Ajoutez la clé API à votre application Vercel en tant que variable d'environnement en sélectionnant votre projet dans le tableau de bord Vercel, puis allez à
 `Paramètres > Variables d'environnement`. Ici, vous pouvez créer des variables d'environnement.
 
+--------------
+
+The project is funded by the Government of Canada via the Digital Citizen Contribution Program.
+
 
    Create an environment variable and name it `OPENAI_API_KEY` within Vercel. This is the name the Fact Check Assistant project uses to access this key by default. The name can be edited within the project in the `.env.production` file.
