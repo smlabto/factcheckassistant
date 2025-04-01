@@ -90,49 +90,32 @@ function Chat() {
             setIsChecking(false);
             return;
         }        
-        //setWriteMessage(writeResult);
-
+        
         var fullResponse = "...";
         setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
-        
-        var url = "https://api.openai.com/v1/chat/completions";
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url);
-
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("Authorization", `Bearer ${process.env.REACT_APP_AI_API_KEY}`);
-        
-        var open_ai_resp;
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    open_ai_resp = xhr.responseText;
-                    fullResponse = JSON.parse(open_ai_resp).choices[0].message.content.replace(/^\s+|\s+$/g, '');
-                    setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : fullResponse},{user: 'factcheck', message : encodeURIComponent(ts) }]);
-                } else {
-                    setErrorMessage(`There seems to be an error with OpenAI API (${xhr.status} Error), try refreshing the page or type another prompt`);
-                    setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : "I had some trouble processing this claim...Please try again."}]);
-                }
-                setIsChecking(false);
-            }
-        };
-
-        var system = "You are a chatbot fact checking assistant developed by the Social Media Lab at Toronto Metropolitan University. Fact-check statements, then explain why (in less than 600 characters).";
-        var data = `{
-            "model": "gpt-4",
-            "messages": [
-                {"role": "system", "content": "${system}"},
-                {"role": "user", "content": "${ts}."}
-            ],
-            "temperature": 0,
-            "max_tokens": 512,
-            "frequency_penalty": 0.75,
-            "presence_penalty": 0
-        }`;
-
-        xhr.send(data);
         setTextInput('');
+
+        try {
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ text: textInput }),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : result.result},{user: 'factcheck', message : encodeURIComponent(ts) }]);
+            } else {
+                setErrorMessage(`It seems an error occured, try refreshing the page or typing another prompt`);
+                setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : "I had some trouble processing this claim...Please try again."}]);
+            }
+        } catch (error) {
+            setErrorMessage("Failed to connect to server, Please try refreshing the page.");
+        }
+    
+        setIsChecking(false);
     }
 
     useEffect(() => scrollChat(), [messages]);
