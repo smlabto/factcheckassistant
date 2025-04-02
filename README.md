@@ -33,24 +33,22 @@ Deploy your own copy of this app with Vercel | Déployez votre propre copie de c
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/smlabto/factcheckassistant&template=create-react-app)
 
 ### Steps to follow to quickly setup your own version
-1. Hit the Deploy with Vercel button above. Setup an account with Vercel if you haven't already, and follow the app deployment steps through Vercel. 
-2. Register an account with OpenAI API. https://openai.com/api/
-3. Create/Access your OpenAI API key by selecting `View API keys` under your profile icon.
-4. Copy your OpenAI API key to later add it as an environment variable in your Vercel application.
-5. Add the API Key to your Vercel app as an Environment Variable by selecting your project in the Vercel Dashboard, then go to  
-`Settings > Environment Variables`. Here you can create environment variables.
-6. Create an environment variable and name it `OPENAI_API_KEY` within Vercel. This is the name the Fact Check Assistant project uses to access this key by default. The name can be edited within the project in the `.env.production` file.
-   
+*The application has been updated to make use of Cloudflares AI API rather than OpenAI.
+1. Hit the Deploy with Vercel button above. Setup an account with Vercel if you haven't already, and follow the app deployment steps through Vercel.
+2. Follow all the steps [here to setup](https://developers.cloudflare.com/workers-ai/get-started/rest-api/) an API token and Account ID with Cloudflare.
+3. Create two environment variables in your Vercel project by clicking on your project in the Vercel Dashboard, then going to  
+`Settings > Environment Variables`. Here you must add these two environment variables: `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`
+4. Paste your Cloudflare Account ID into `CLOUDFLARE_ACCOUNT_ID` and your Cloudflare API Token into `CLOUDFLARE_API_TOKEN`
+
 --------------
 
 ### Étapes à suivre pour configurer rapidement votre propre version
-1. Cliquez sur le bouton Déployer avec Vercel ci-dessus. Créez un compte avec Vercel si vous ne l'avez pas déjà fait, et suivez les étapes de déploiement de l'application via Vercel.
-2. Inscrivez-vous à un compte avec OpenAI API. https://openai.com/api/
-3. Créez/Accédez à votre clé API OpenAI en sélectionnant `Voir les clés API` sous l'icône de votre profil.
-4. Copiez votre clé API OpenAI pour l'ajouter plus tard en tant que variable d'environnement dans votre application Vercel.
-5. Ajoutez la clé API à votre application Vercel en tant que variable d'environnement en sélectionnant votre projet dans le tableau de bord Vercel, puis allez à
-`Paramètres > Variables d'environnement`. Ici, vous pouvez créer des variables d'environnement.
-6. Créez une variable d'environnement et nommez-la OPENAI_API_KEY dans Vercel. C'est le nom que le projet Fact Check Assistant utilise par défaut pour accéder à cette clé. Le nom peut être modifié dans le projet, dans le fichier .env.production.
+*L'application a été mise à jour pour utiliser l'API AI de Cloudflares plutôt que celle d'OpenAI.
+1. Cliquez sur le bouton Déployer avec Vercel ci-dessus. Créez un compte avec Vercel si ce n'est pas déjà fait, et suivez les étapes de déploiement de l'application via Vercel.
+2. Suivez toutes les étapes [ici pour configurer](https://developers.cloudflare.com/workers-ai/get-started/rest-api/) un jeton API et un ID de compte avec Cloudflare.
+3. Créez deux variables d'environnement dans votre projet Vercel en cliquant sur votre projet dans le tableau de bord Vercel, puis en allant à  
+`Settings > Environment Variables`. Ici vous pouvez ajouter ces deux variables d'environnement : `CLOUDFLARE_ACCOUNT_ID` et `CLOUDFLARE_API_TOKEN`.
+4. Collez votre ID de compte Cloudflare dans `CLOUDFLARE_ACCOUNT_ID` et votre Token API Cloudflare dans `CLOUDFLARE_API_TOKEN`.
 
 
 --------------
