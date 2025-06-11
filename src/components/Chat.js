@@ -91,29 +91,21 @@ function Chat() {
             return;
         }        
         
-        var fullResponse = "...";
-        setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
+        // var fullResponse = "...";
+        // setMessages([...messages, {user: 'user', message : ts}, {user: 'bot', message : fullResponse}]);
+
         setTextInput('');
+        setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : "This project is no longer active. Please email us at info@socialmedialab.ca if you have any questions."}]);
+        
+        // try {
+        //     const response = await fetch("/api/chat", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify({ text: textInput }),
+        //     });
 
-        try {
-            const response = await fetch("/api/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ text: textInput }),
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-                setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : result.result},{user: 'factcheck', message : encodeURIComponent(ts) }]);
-            } else {
-                setErrorMessage(`It seems an error occured, try refreshing the page or typing another prompt`);
-                setMessages([...messages, {user: 'user', message : ts}, {user: 'notice', message : ' '}, {user: 'bot', message : "I had some trouble processing this claim...Please try again."}]);
-            }
-        } catch (error) {
-            setErrorMessage("Failed to connect to server, Please try refreshing the page.");
-        }
     
         setIsChecking(false);
     }
